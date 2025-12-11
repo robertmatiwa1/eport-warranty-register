@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warranty Centre</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+        .container { max-width: 960px; margin: 40px auto; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h1 { font-size: 22px; margin-bottom: 8px; }
+        .meta { font-size: 13px; color: #6b7280; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+        th, td { border-bottom: 1px solid #e5e7eb; padding: 8px; text-align: left; }
+        th { background: #f3f4f6; font-weight: 600; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 9999px; background: #ecfdf5; color: #166534; font-size: 12px; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .btn-logout { font-size: 13px; color: #374151; text-decoration: none; }
+        .btn-logout:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="topbar">
+        <div>
+            <h1>Warranty Centre</h1>
+            <div class="meta">
+                Logged in as <strong>{{ user_email }}</strong><br>
+                Total registered warranties: {{ warranties|length }}
+            </div>
+        </div>
+        <div>
+            <a class="btn-logout" href="/warranty/logout">Sign out</a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Asset ID</th>
+            <th>Asset Name</th>
+            <th>Registered By</th>
+            <th>Registered At</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for w in warranties %}
+            <tr>
+                <td>{{ w.id }}</td>
+                <td>{{ w.asset_id }}</td>
+                <td>{{ w.asset_name }}</td>
+                <td>{{ w.registered_by }}</td>
+                <td>{{ w.created_at }}</td>
+                <td><span class="badge">Warranty Registered</span></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
